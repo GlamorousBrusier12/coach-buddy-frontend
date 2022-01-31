@@ -25,7 +25,10 @@ export default class EnrolledCourses extends Component {
   render() {
     return (
       <div>
-        <ul>
+        <ul
+          style={{ display: "flex", flexDirection: "row", flexWrap: "wrap" }}
+          className="cards"
+        >
           {this.state.user.enrolledCourses &&
             this.state.user.enrolledCourses.map((c, i) => {
               return (

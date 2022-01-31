@@ -7,7 +7,10 @@ const Home = (props) => {
     <div id="home-container">
       {/* courses */}
       <div className="list-of-courses">
-        <ul>
+        <ul
+          style={{ display: "flex", flexDirection: "row", flexWrap: "wrap" }}
+          className="cards"
+        >
           {courses.map((c, i) => {
             return (
               <li key={i}>

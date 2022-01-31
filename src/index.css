@@ -1,3 +1,7 @@
 * {
   font-family: sans-serif;
 }
+.cards li {
+  padding: 20px;
+  list-style-type: none;
+}

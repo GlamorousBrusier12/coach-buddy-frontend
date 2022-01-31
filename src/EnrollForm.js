@@ -64,24 +64,42 @@ const EnrollForm = (props) => {
   };
   return (
     <div id="enroll-mail-container">
+      <h1>Course Enrollment Form</h1>
+
       <div className="enroll-form-container">
-        <form>
-          <label htmlFor="user-name">Name:</label>
-          <input
-            type="text"
-            id="user-name"
-            name="name"
-            required
-            onChange={(e) => setName(e.target.value)}
-          />
-          <label htmlFor="user-email">Email:</label>
-          <input
-            type="email"
-            id="user-email"
-            name="email"
-            required
-            onChange={(e) => setEmail(e.target.value)}
-          />
+        <form
+          style={{
+            width: "40vw",
+            paddingLeft: 100,
+          }}
+        >
+          <div className="mb-3">
+            <label htmlFor="user-name" className="form-label">
+              Name:
+            </label>
+            <input
+              type="text"
+              id="user-name"
+              name="name"
+              required
+              onChange={(e) => setName(e.target.value)}
+              className="form-control"
+            />
+          </div>
+          <div className="mb-3">
+            <label htmlFor="user-email" className="form-label">
+              Email:
+            </label>
+            <input
+              type="email"
+              id="user-email"
+              name="email"
+              required
+              onChange={(e) => setEmail(e.target.value)}
+              className="form-control"
+            />
+          </div>
+
           <label htmlFor="course">Choose a course:</label>
 
           <select
@@ -91,6 +109,7 @@ const EnrollForm = (props) => {
               getUrl(e);
             }}
             required
+            className="form-select"
           >
             <option disabled selected value>
               -- select a course--
@@ -108,6 +127,7 @@ const EnrollForm = (props) => {
               e.preventDefault();
               enrollCourse();
             }}
+            className="btn btn-primary m-3"
           >
             Enroll
           </button>
@@ -116,6 +136,8 @@ const EnrollForm = (props) => {
               e.preventDefault();
               unenrollCourse();
             }}
+            style={{ margin: "10" }}
+            className="btn btn-primary m-3"
           >
             unenroll
           </button>
