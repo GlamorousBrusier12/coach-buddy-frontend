@@ -11,7 +11,7 @@ const App = () => {
     fetch("http://localhost:3001/api/course")
       .then((res) => res.json())
       .then((res) => {
-        console.log(res);
+        // console.log(res);
         setCourses(res.data);
       });
   }, []);

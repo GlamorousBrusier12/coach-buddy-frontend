@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import EnrolledCourses from "./EnrolledCourses";
 import { toast } from "react-toastify";
 const EnrollForm = (props) => {
@@ -7,12 +7,30 @@ const EnrollForm = (props) => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const userEmail = "abc@gmail.com";
+  const [trigger, setTrigger] = useState("abc@gmail.com");
+  const [user, setUser] = useState({});
+  useEffect(() => {
+    fetchUser();
+  }, []);
+
   const getUrl = (e) => {
     setCourseid(e.target.value);
   };
+
+  const fetchUser = () => {
+    fetch(`http://localhost:3001/api/user/${userEmail}`)
+      .then((res) => {
+        // console.log("res from the server ", res);
+        return res.json();
+      })
+      .then((u) => {
+        setUser(u.data);
+        // console.log(user);
+      });
+  };
   const enrollCourse = () => {
     const postObj = { name: name, email: email };
-    console.log(postObj);
+    // console.log(postObj);
     fetch(`http://localhost:3001/api/course/enroll/${courseid}`, {
       method: "POST", // or 'PUT'
       headers: {
@@ -35,12 +53,15 @@ const EnrollForm = (props) => {
         } else if (res.message === "sucessfully enrolled") {
           toast.success(res.message);
         }
+        // setTrigger(userEmail);
+        // console.log("triggered");
+        fetchUser();
       });
   };
 
   const unenrollCourse = () => {
     const postObj = { name: name, email: email };
-    console.log(postObj);
+    // console.log(postObj);
     fetch(`http://localhost:3001/api/course/unenroll/${courseid}`, {
       method: "POST", // or 'PUT'
       headers: {
@@ -49,17 +70,19 @@ const EnrollForm = (props) => {
       body: JSON.stringify(postObj),
     })
       .then((res) => {
-        console.log(res);
+        // console.log(res);
         return res.json();
       })
       .then((res) => {
-        console.log("res from the server", res);
+        // console.log("res from the server", res);
         if (res.message === "cannot unenroll in last minute") {
           toast.error("couldnt unenroll");
           console.log(res.message);
         } else if (res.status === "unenrolled") {
           toast.success(res.status);
         }
+        setTrigger(userEmail);
+        fetchUser();
       });
   };
   return (
@@ -144,7 +167,7 @@ const EnrollForm = (props) => {
         </form>
       </div>
       <div id="enrolled-courses">
-        <EnrolledCourses email={userEmail} />
+        <EnrolledCourses email={trigger} user={user} />
       </div>
     </div>
   );

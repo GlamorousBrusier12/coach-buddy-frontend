@@ -4,8 +4,9 @@ Designing and implementing an application which has multiple courses from which 
 
 ## steps for local setup
 
-1. install all the packages using npm i
-2. to start the api service run "npm start"
+1. setup node.js, react, mongoDB on your device before starting
+2. install all the packages using npm i
+3. to start the api service run "npm start"
 
 ## assumptions:
 
