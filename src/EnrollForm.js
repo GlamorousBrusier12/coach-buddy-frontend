@@ -65,7 +65,7 @@ const EnrollForm = (props) => {
   return (
     <div id="enroll-mail-container">
       <h1>Course Enrollment Form</h1>
-
+      <p> currently test with abc@gmail.com </p>
       <div className="enroll-form-container">
         <form
           style={{
